@@ -4,14 +4,16 @@
 */
 
 #priority 1000000
+#loader crafttweaker reloadableevents
 
 zenClass Logger {
 
-    val ID = "[ZenExportUtils]" ~ " ";
-
-    function printer(msg as string) as string {
-        print(ID ~ msg);
+    zenConstructor(arg as string) {
+        this.id = arg;
     }
+
+    val id as string;
+    val ID as string = "[ZenExportUtils]";
 
     function info(msg as string) {
         logger.logInfo(ID ~ msg);
@@ -25,10 +27,6 @@ zenClass Logger {
         logger.logError(ID ~ msg);
     }
 
-    function getClass() as Logger {
-        return this;
-    }
-
 }
 
-global Logger as Logger = Logger.getClass();
+global Logger as Logger = Logger("Instanced");
