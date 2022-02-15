@@ -3,7 +3,7 @@
     Flie: BlockHelper.zs
 */
 
-#priority 999999
+#priority 1000000
 #loader crafttweaker reloadableevents
 import crafttweaker.block.IBlock;
 
@@ -15,10 +15,10 @@ zenClass BlockHelper {
 
     val id as string;
 
-    function getBlockID(block as IBlock) as string {
+    function getBlockID(block as IBlock, isDetailed as bool) as string {
         val id = block.definition.id;
-        val meta = block.meta;
-        return (meta == 0) ? id : (id ~ ":" ~ meta);
+        val meta = block.meta;            
+        return isDetailed ? (id ~ ":" ~ meta) : id;
     }
 
 }

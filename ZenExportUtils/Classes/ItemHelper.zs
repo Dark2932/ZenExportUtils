@@ -3,7 +3,7 @@
     Flie: ItemHelper.zs
 */
 
-#priority 999998
+#priority 1000000
 #loader crafttweaker reloadableevents
 import crafttweaker.player.IPlayer;
 import crafttweaker.item.IItemStack;
@@ -16,18 +16,18 @@ zenClass ItemHelper {
 
     val id as string;
 
-    function getItemID(item as IItemStack) as string {
+    function getItemID(item as IItemStack, isDetailed as bool) as string {
         val id = item.definition.id;
         val meta = item.metadata;
-        return (meta == 0) ? id : (id ~ ":" ~ meta);
+        return isDetailed ? (id ~ ":" ~ meta) : id;
     }
 
     function matchDye(item as IItemStack) as bool {
-        return (this.getItemID(item) == this.getItemID(<minecraft:dye:0>));
+        return (this.getItemID(item, true) == this.getItemID(<minecraft:dye:0>, true));
     }
 
     function matchCurrent(player as IPlayer) as bool {
-        val item = PlayerHelper.getCurrent(player);
+        val item = player.currentItem;
         return (!isNull(item) && this.matchDye(item));
     }
 

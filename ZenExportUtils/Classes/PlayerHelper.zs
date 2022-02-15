@@ -3,7 +3,7 @@
     Flie: PlayerHelper.zs
 */
 
-#priority 999999
+#priority 1000000
 #loader crafttweaker reloadableevents
 import crafttweaker.player.IPlayer;
 import crafttweaker.item.IItemStack;
